@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Collection — Vasili</title>
+  <title>Frontpage — Vasili</title>
   <meta name="robots" content="noindex">
   <link rel="icon" href="assets/brand/vasili-logo-white.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,32 +15,86 @@
 <body data-page="collection">
   <a class="skip" href="#main">Skip to content</a>
   <header class="site-header">
-    <nav aria-label="Primary">
-      <a href="map.html">Explore</a>
-      <a href="collection.html" aria-current="page">Collection</a>
+    <nav class="nav-main" aria-label="Primary">
+      <a href="shop.html">Shop</a>
+      <div class="dd">
+        <button type="button" class="dd-toggle" id="collections-toggle" aria-expanded="false" aria-controls="collections-menu">Collections</button>
+        <div class="dd-panel" id="collections-menu" hidden>
+          <ul>
+<li><a href="shop.html">All products</a></li>
+<li><a href="collection.html" aria-current="page">Frontpage</a></li>
+<li><a href="collection-bracelet.html">Bracelet</a></li>
+<li><a href="collection-earring.html">Earring</a></li>
+<li><a href="collection-necklace.html">Necklace</a></li>
+<li><a href="collection-object.html">Object</a></li>
+<li><a href="collection-ring.html">Ring</a></li>
+          </ul>
+        </div>
+      </div>
     </nav>
     <a class="logo" href="index.html"><img src="assets/brand/vasili-logo-white.svg" alt="Vasili — home" width="243" height="104"></a>
-    <nav class="nav-mobile" aria-label="Primary (small screens)">
-      <a href="map.html">Explore</a>
-      <a href="collection.html" aria-current="page">Collection</a>
+    <nav class="nav-side" aria-label="Secondary">
+      <a class="hide-sm" href="about.html">About</a>
+      <a class="hide-sm" href="news.html">News</a>
+      <a class="show-sm" href="shop.html">Shop</a>
+      <button type="button" class="menu-btn" id="menu-open" aria-haspopup="dialog" aria-expanded="false" aria-controls="site-menu">Menu</button>
     </nav>
   </header>
+  <dialog class="site-menu" id="site-menu" aria-label="Menu">
+    <div class="menu-head">
+      <img src="assets/brand/vasili-logo-white.svg" alt="" width="243" height="104">
+      <button type="button" class="btn" data-menu-close>Close</button>
+    </div>
+    <div class="menu-groups">
+      <section><h2 class="label">Shop</h2><ul>
+<li><a href="shop.html">All products</a></li>
+<li><a href="collection.html" aria-current="page">Frontpage</a></li>
+<li><a href="collection-bracelet.html">Bracelet</a></li>
+<li><a href="collection-earring.html">Earring</a></li>
+<li><a href="collection-necklace.html">Necklace</a></li>
+<li><a href="collection-object.html">Object</a></li>
+<li><a href="collection-ring.html">Ring</a></li>
+      </ul></section>
+      <section><h2 class="label">Studio</h2><ul>
+<li><a href="about.html">About</a></li>
+<li><a href="preface.html">Preface</a></li>
+<li><a href="collaborations.html">Collaborations</a></li>
+<li><a href="custom-inquiries.html">Custom Inquiries</a></li>
+      </ul></section>
+      <section><h2 class="label">News</h2><ul>
+<li><a href="news.html">News</a></li>
+<li><a href="blog.html">News blog</a></li>
+      </ul></section>
+      <section><h2 class="label">Help</h2><ul>
+<li><a href="faq.html">FAQ</a></li>
+<li><a href="shipping-policy.html">Shipping Policy</a></li>
+<li><a href="return-policy.html">Return Policy</a></li>
+      </ul></section>
+    </div>
+  </dialog>
 
   <main id="main">
     <div class="page-head">
       <div>
-        <span class="label">Collection</span>
+        <span class="label">Frontpage</span>
         <h1 class="ph-h">[Heading]</h1>
         <p class="ph-t">[Text]</p>
       </div>
-      <a class="btn" href="map.html">Explore<span class="arrow"></span></a>
     </div>
-    <div class="collection-grid" id="collection-grid"></div>
+    <nav class="chips" aria-label="Collections"><ul>
+<li><a href="shop.html">All products</a></li>
+<li><a href="collection.html" aria-current="page">Frontpage</a></li>
+<li><a href="collection-bracelet.html">Bracelet</a></li>
+<li><a href="collection-earring.html">Earring</a></li>
+<li><a href="collection-necklace.html">Necklace</a></li>
+<li><a href="collection-object.html">Object</a></li>
+<li><a href="collection-ring.html">Ring</a></li>
+    </ul></nav>
+    <div class="collection-grid" id="collection-grid" data-collection="frontpage"></div>
   </main>
-
   <footer class="site-footer">
-    <form class="signup" novalidate aria-labelledby="signup-h-collection">
-      <h2 class="ph-h" id="signup-h-collection">[Heading]</h2>
+    <form class="signup" novalidate data-visual-only aria-labelledby="signup-h">
+      <h2 class="ph-h" id="signup-h">[Heading]</h2>
       <div class="signup-row">
         <label class="sr-only" for="email-collection">Email address</label>
         <input id="email-collection" type="email" name="email" placeholder="[Email]" autocomplete="off">
@@ -48,18 +102,30 @@
       </div>
       <p class="note">[Text] — layout only, not connected.</p>
     </form>
-    <div>
-      <nav class="footer-nav" aria-label="Footer">
-        <a href="map.html">Explore</a>
-        <a href="collection.html">Collection</a>
-        <a href="index.html">Home</a>
-      </nav>
-      <img class="footer-mark" src="assets/brand/vasili-logo-white.svg" alt="" width="243" height="104">
-    </div>
+    <nav class="footer-cols" aria-label="Footer">
+      <div><h2 class="label">Shop</h2><ul><li><a href="shop.html">All products</a></li>
+<li><a href="collection.html">Frontpage</a></li>
+<li><a href="collection-bracelet.html">Bracelet</a></li>
+<li><a href="collection-earring.html">Earring</a></li>
+<li><a href="collection-necklace.html">Necklace</a></li>
+<li><a href="collection-object.html">Object</a></li>
+<li><a href="collection-ring.html">Ring</a></li></ul></div>
+      <div><h2 class="label">Studio</h2><ul><li><a href="about.html">About</a></li>
+<li><a href="preface.html">Preface</a></li>
+<li><a href="collaborations.html">Collaborations</a></li>
+<li><a href="custom-inquiries.html">Custom Inquiries</a></li></ul></div>
+      <div><h2 class="label">News</h2><ul><li><a href="news.html">News</a></li>
+<li><a href="blog.html">News blog</a></li></ul></div>
+      <div><h2 class="label">Help</h2><ul><li><a href="faq.html">FAQ</a></li>
+<li><a href="shipping-policy.html">Shipping Policy</a></li>
+<li><a href="return-policy.html">Return Policy</a></li></ul></div>
+    </nav>
+    <img class="footer-mark" src="assets/brand/vasili-logo-white.svg" alt="" width="243" height="104">
   </footer>
 
   <script src="data/origin-map.js"></script>
   <script src="data/products.js"></script>
+  <script src="data/collections.js"></script>
   <script src="data/demo-connections.js"></script>
   <script src="js/glyphs.js"></script>
   <script src="js/site.js"></script>
