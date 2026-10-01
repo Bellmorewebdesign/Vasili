@@ -2,10 +2,24 @@
 
 The sample site is now built in this repository: `index.html` (home), `map.html` (explore / origin map), `collection.html`, and `product.html?id=…` (one reusable product layout). All visible editorial text is placeholder only.
 
-## View it
+## Deploy on GitHub Pages (main branch, root)
 
-- **GitHub Pages:** Settings → Pages → Deploy from a branch → choose the branch and `/ (root)`. Everything uses relative paths, so it works under `https://<user>.github.io/<repo>/`.
-- **Locally:** run `python3 -m http.server` in this folder and open `http://localhost:8000/`.
+The site is plain HTML/CSS/JavaScript with no build step, so GitHub Pages can serve the repository as-is.
+
+1. Make sure the site files are on `main` (merge the working branch into `main`).
+2. On GitHub: **Settings → Pages → Build and deployment → Source: Deploy from a branch → Branch: `main`, folder `/ (root)` → Save**.
+3. Wait about a minute (the **Actions** tab shows a "pages build and deployment" run), then open
+   **https://bellmorewebdesign.github.io/Vasili/**
+
+Why it works from the root:
+- `index.html` is at the repository root, so it is the homepage.
+- `.nojekyll` tells GitHub Pages to serve files as they are instead of running Jekyll.
+- Every link and asset path is relative (no leading `/`), so it works under the `/Vasili/` subpath.
+- Map state lives in the query string (`map.html?node=a1-1`), which needs no server rewrites; refresh, Back and shared links work.
+
+Before pushing changes, run `python3 tools/check-pages.py`. It fails if a file is missing, a path's letter case is wrong (GitHub Pages is case-sensitive even when your computer is not), or a link starts with `/`.
+
+To view locally: run `python3 -m http.server` in this folder and open `http://localhost:8000/`.
 
 ## Where things live
 
