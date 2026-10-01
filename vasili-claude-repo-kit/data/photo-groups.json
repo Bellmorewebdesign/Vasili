@@ -1,0 +1,48 @@
+{
+  "note": "Image groups parsed from actual product gallery elements in the downloaded source. These are photo identity groups, not confirmed design ancestry and not approved site text. Use placeholder product labels on the prototype.",
+  "groups": [
+    {
+      "source_url": "https://vasili.nyc/products/big-chunky-extendo-bracelet",
+      "source_handle": "big-chunky-extendo-bracelet",
+      "photos": [
+        "assets/photos/Capture_One_Catalog0009.jpg",
+        "assets/photos/DSC09915.jpg",
+        "assets/photos/DSC09924.jpg",
+        "assets/photos/DSC09983.jpg",
+        "assets/photos/20210107-_F6A3947-Edit.jpg",
+        "assets/photos/cropextedobb.jpg"
+      ],
+      "confirmed_origin_node": null
+    },
+    {
+      "source_url": "https://vasili.nyc/products/gold-spur-ring",
+      "source_handle": "gold-spur-ring",
+      "photos": [
+        "assets/photos/Capture_One_Catalog0006_07f31f3d-f59c-4f2c-b5cc-4638f0a9559e.jpg",
+        "assets/photos/VASILI121.jpg"
+      ],
+      "confirmed_origin_node": null
+    },
+    {
+      "source_url": "https://vasili.nyc/products/lull-ring",
+      "source_handle": "lull-ring",
+      "photos": [
+        "assets/photos/Capture_One_Catalog0004.jpg",
+        "assets/photos/VASILI129.jpg"
+      ],
+      "confirmed_origin_node": null
+    },
+    {
+      "source_url": "https://vasili.nyc/products/mirror-link-bracelet-mids",
+      "source_handle": "mirror-link-bracelet-mids",
+      "photos": [
+        "assets/photos/One-Thirty_New_York0539.jpg",
+        "assets/photos/DCE7A7F3-43BB-4DA7-8AE6-09BA81EF0ECF.jpg",
+        "assets/photos/291BC55A-D7C1-4363-A04B-985E4F7EF67F.jpg",
+        "assets/photos/490966CD-BF22-4243-962F-24AF497CCB61.jpg",
+        "assets/photos/C8B550E0-0F4B-4EF6-B19E-87D13B946520.jpg"
+      ],
+      "confirmed_origin_node": null
+    }
+  ]
+}

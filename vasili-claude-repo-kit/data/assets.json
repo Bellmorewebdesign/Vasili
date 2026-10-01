@@ -1,0 +1,366 @@
+{
+  "note": "Original bytes preserved. Repeated downloads consolidated by SHA-256. Source URLs may contain the original extraction encoding artifacts; local paths are authoritative.",
+  "extracted_download_count": 33,
+  "unique_site_asset_count": 17,
+  "site_assets": [
+    {
+      "path": "assets/photos/One-Thirty_New_York0539.jpg",
+      "bytes": 224778,
+      "sha256": "017693d69bde8bb8935e7b48729fb047d066a41ebbb8b29fffb7d3840c475cf4",
+      "width": 4243,
+      "height": 5304,
+      "format": "JPEG",
+      "source_urls": [
+        "http://vasili.nyc/cdn/shop/files/One-Thirty_New_York0539.jpg?v=1712670452",
+        "https://cdn.shopify.com/s/files/1/0282/0023/9209/files/One-Thirty_New_York0539.jpg?v=1712670452",
+        "https://vasili.nyc/cdn/shop/files/One-Thirty_New_York0539.jpg?v=1712670452",
+        "https://vasili.nyc/cdn/shop/files/One-Thirty_New_York0539.jpg?v=1712670452%5C",
+        "https://vasili.nyc/cdn/shop/files/One-Thirty_New_York0539.jpg?v=1712670452%5Cu0026width%3D1920"
+      ],
+      "extraction_files": [
+        "images/001-One-Thirty_New_York0539.jpg",
+        "images/005-One-Thirty_New_York0539.jpg",
+        "images/014-One-Thirty_New_York0539.jpg",
+        "images/015-One-Thirty_New_York0539.jpg",
+        "images/016-One-Thirty_New_York0539.jpg"
+      ]
+    },
+    {
+      "path": "assets/photos/Capture_One_Catalog0004.jpg",
+      "bytes": 72070,
+      "sha256": "1347ddf5969a209f736afe9cdb60da08d0cfcd66ab09712441e75282819b40c3",
+      "width": 1434,
+      "height": 1948,
+      "format": "JPEG",
+      "source_urls": [
+        "http://vasili.nyc/cdn/shop/products/Capture_One_Catalog0004.jpg?v=1668201819",
+        "https://cdn.shopify.com/s/files/1/0282/0023/9209/products/Capture_One_Catalog0004.jpg?v=1668201819",
+        "https://vasili.nyc/cdn/shop/products/Capture_One_Catalog0004.jpg?v=1668201819",
+        "https://vasili.nyc/cdn/shop/products/Capture_One_Catalog0004.jpg?v=1668201819%5C",
+        "https://vasili.nyc/cdn/shop/products/Capture_One_Catalog0004.jpg?v=1668201819%5Cu0026width%3D1920"
+      ],
+      "extraction_files": [
+        "images/002-Capture_One_Catalog0004.jpg",
+        "images/006-Capture_One_Catalog0004.jpg",
+        "images/019-Capture_One_Catalog0004.jpg",
+        "images/020-Capture_One_Catalog0004.jpg",
+        "images/021-Capture_One_Catalog0004.jpg"
+      ]
+    },
+    {
+      "path": "assets/photos/Capture_One_Catalog0006_07f31f3d-f59c-4f2c-b5cc-4638f0a9559e.jpg",
+      "bytes": 85462,
+      "sha256": "e5fae2397b339d4d8f218a1db52c3b3fe910b0b4cf596dd21e063bad8253c9a7",
+      "width": 1193,
+      "height": 1621,
+      "format": "JPEG",
+      "source_urls": [
+        "http://vasili.nyc/cdn/shop/products/Capture_One_Catalog0006_07f31f3d-f59c-4f2c-b5cc-4638f0a9559e.jpg?v=1668201091",
+        "https://cdn.shopify.com/s/files/1/0282/0023/9209/products/Capture_One_Catalog0006_07f31f3d-f59c-4f2c-b5cc-4638f0a9559e.jpg?v=1668201091",
+        "https://vasili.nyc/cdn/shop/products/Capture_One_Catalog0006_07f31f3d-f59c-4f2c-b5cc-4638f0a9559e.jpg?v=1668201091",
+        "https://vasili.nyc/cdn/shop/products/Capture_One_Catalog0006_07f31f3d-f59c-4f2c-b5cc-4638f0a9559e.jpg?v=1668201091%5C",
+        "https://vasili.nyc/cdn/shop/products/Capture_One_Catalog0006_07f31f3d-f59c-4f2c-b5cc-4638f0a9559e.jpg?v=1668201091%5Cu0026width%3D1920"
+      ],
+      "extraction_files": [
+        "images/003-Capture_One_Catalog0006_07f31f3d-f59c-4f2c-b5cc-4638f0a9559e.jpg",
+        "images/007-Capture_One_Catalog0006_07f31f3d-f59c-4f2c-b5cc-4638f0a9559e.jpg",
+        "images/022-Capture_One_Catalog0006_07f31f3d-f59c-4f2c-b5cc-4638f0a9559e.jpg",
+        "images/023-Capture_One_Catalog0006_07f31f3d-f59c-4f2c-b5cc-4638f0a9559e.jpg",
+        "images/024-Capture_One_Catalog0006_07f31f3d-f59c-4f2c-b5cc-4638f0a9559e.jpg"
+      ]
+    },
+    {
+      "path": "assets/photos/Capture_One_Catalog0009.jpg",
+      "bytes": 283421,
+      "sha256": "654279e8f8689eb8cc112bad4921e8d4cdab2ff3af589875daa1ba150331f2b9",
+      "width": 3341,
+      "height": 3341,
+      "format": "JPEG",
+      "source_urls": [
+        "http://vasili.nyc/cdn/shop/products/Capture_One_Catalog0009.jpg?v=1611175247",
+        "https://cdn.shopify.com/s/files/1/0282/0023/9209/products/Capture_One_Catalog0009.jpg?v=1611175247",
+        "https://vasili.nyc/cdn/shop/products/Capture_One_Catalog0009.jpg?v=1611175247",
+        "https://vasili.nyc/cdn/shop/products/Capture_One_Catalog0009.jpg?v=1611175247%5C",
+        "https://vasili.nyc/cdn/shop/products/Capture_One_Catalog0009.jpg?v=1611175247%5Cu0026width%3D1920"
+      ],
+      "extraction_files": [
+        "images/004-Capture_One_Catalog0009.jpg",
+        "images/008-Capture_One_Catalog0009.jpg",
+        "images/025-Capture_One_Catalog0009.jpg",
+        "images/026-Capture_One_Catalog0009.jpg",
+        "images/027-Capture_One_Catalog0009.jpg"
+      ]
+    },
+    {
+      "path": "assets/photos/291BC55A-D7C1-4363-A04B-985E4F7EF67F.jpg",
+      "bytes": 100853,
+      "sha256": "15775f041af9a493aa3ab99aef38e428bd147433f98964b2b685ebe79994b1d5",
+      "width": 1365,
+      "height": 2048,
+      "format": "JPEG",
+      "source_urls": [
+        "https://vasili.nyc/cdn/shop/files/291BC55A-D7C1-4363-A04B-985E4F7EF67F.jpg?v=1712670450"
+      ],
+      "extraction_files": [
+        "images/009-291BC55A-D7C1-4363-A04B-985E4F7EF67F.jpg"
+      ]
+    },
+    {
+      "path": "assets/photos/490966CD-BF22-4243-962F-24AF497CCB61.jpg",
+      "bytes": 111419,
+      "sha256": "05a290dbcc6a437524affc658d9d6a54c345e896639ebc7ef437b4df0a7f1517",
+      "width": 1365,
+      "height": 2048,
+      "format": "JPEG",
+      "source_urls": [
+        "https://vasili.nyc/cdn/shop/files/490966CD-BF22-4243-962F-24AF497CCB61.jpg?v=1712670452"
+      ],
+      "extraction_files": [
+        "images/010-490966CD-BF22-4243-962F-24AF497CCB61.jpg"
+      ]
+    },
+    {
+      "path": "assets/photos/C8B550E0-0F4B-4EF6-B19E-87D13B946520.jpg",
+      "bytes": 128937,
+      "sha256": "954bdad2d35547f3f909293a939e34b8443d91ea5816143093a7da78e1a70ece",
+      "width": 1365,
+      "height": 2048,
+      "format": "JPEG",
+      "source_urls": [
+        "https://vasili.nyc/cdn/shop/files/C8B550E0-0F4B-4EF6-B19E-87D13B946520.jpg?v=1712670451"
+      ],
+      "extraction_files": [
+        "images/011-C8B550E0-0F4B-4EF6-B19E-87D13B946520.jpg"
+      ]
+    },
+    {
+      "path": "assets/photos/DCE7A7F3-43BB-4DA7-8AE6-09BA81EF0ECF.jpg",
+      "bytes": 194459,
+      "sha256": "5209dc9df30fb47deef0c41ea5afe038356aa7facbcce2056c994a1aaa8574ad",
+      "width": 1365,
+      "height": 2048,
+      "format": "JPEG",
+      "source_urls": [
+        "https://vasili.nyc/cdn/shop/files/DCE7A7F3-43BB-4DA7-8AE6-09BA81EF0ECF.jpg?v=1712670450"
+      ],
+      "extraction_files": [
+        "images/012-DCE7A7F3-43BB-4DA7-8AE6-09BA81EF0ECF.jpg"
+      ]
+    },
+    {
+      "path": "assets/photos/DSC07321.png",
+      "bytes": 20591386,
+      "sha256": "62d4cb8e31a5de3632b12c495c02fd38fbf4d5b3642116ca619839a3d52833e9",
+      "width": 2880,
+      "height": 4320,
+      "format": "PNG",
+      "source_urls": [
+        "https://vasili.nyc/cdn/shop/files/DSC07321.png?v=1782338129"
+      ],
+      "extraction_files": [
+        "images/013-DSC07321.png"
+      ]
+    },
+    {
+      "path": "assets/brand/vasili-logo-white.svg",
+      "bytes": 5506,
+      "sha256": "1f14c477ed0acd4b2e6ef37574948207e93ca95b7a7a93d26f1a564a6504de3f",
+      "source_urls": [
+        "https://vasili.nyc/cdn/shop/files/logo.white.reg.svg?v=1782343415"
+      ],
+      "extraction_files": [
+        "images/017-logo.white.reg.svg"
+      ]
+    },
+    {
+      "path": "assets/photos/20210107-_F6A3947-Edit.jpg",
+      "bytes": 1453288,
+      "sha256": "6f931c3648a4750882be22695e8d4350c410fdbce71392223a56c95ece07979b",
+      "width": 2568,
+      "height": 3387,
+      "format": "JPEG",
+      "source_urls": [
+        "https://vasili.nyc/cdn/shop/products/20210107-_F6A3947-Edit.jpg?v=1611175247"
+      ],
+      "extraction_files": [
+        "images/018-20210107-_F6A3947-Edit.jpg"
+      ]
+    },
+    {
+      "path": "assets/photos/DSC09915.jpg",
+      "bytes": 1099098,
+      "sha256": "a0e82a2aba2a5ee4858009db0a3149423599bea10558a3035a230686ade71d0d",
+      "width": 4348,
+      "height": 3161,
+      "format": "JPEG",
+      "source_urls": [
+        "https://vasili.nyc/cdn/shop/products/DSC09915.jpg?v=1611175247"
+      ],
+      "extraction_files": [
+        "images/028-DSC09915.jpg"
+      ]
+    },
+    {
+      "path": "assets/photos/DSC09924.jpg",
+      "bytes": 571171,
+      "sha256": "a35624239cf3e9ebddadcb90b27f2f06ad8ecf9aa06a777afbd55cc6fcbae0e2",
+      "width": 2941,
+      "height": 1881,
+      "format": "JPEG",
+      "source_urls": [
+        "https://vasili.nyc/cdn/shop/products/DSC09924.jpg?v=1611175247"
+      ],
+      "extraction_files": [
+        "images/029-DSC09924.jpg"
+      ]
+    },
+    {
+      "path": "assets/photos/DSC09983.jpg",
+      "bytes": 219380,
+      "sha256": "e7b3d8d8f90f147313abaf17c6880801f3cc0cdbbed00e9cf091cccdbf29933d",
+      "width": 2865,
+      "height": 2040,
+      "format": "JPEG",
+      "source_urls": [
+        "https://vasili.nyc/cdn/shop/products/DSC09983.jpg?v=1611175247"
+      ],
+      "extraction_files": [
+        "images/030-DSC09983.jpg"
+      ]
+    },
+    {
+      "path": "assets/photos/VASILI121.jpg",
+      "bytes": 2140052,
+      "sha256": "5a6e46a5540756d61aea7035c82ed8b667c05b62a23f71fecc4223cd9b5ffa33",
+      "width": 3650,
+      "height": 5475,
+      "format": "JPEG",
+      "source_urls": [
+        "https://vasili.nyc/cdn/shop/products/VASILI121.jpg?v=1668437772"
+      ],
+      "extraction_files": [
+        "images/031-VASILI121.jpg"
+      ]
+    },
+    {
+      "path": "assets/photos/VASILI129.jpg",
+      "bytes": 1678056,
+      "sha256": "281f6c0e313da36bf2a1793a438f409f59c456b8a1fdba1890d965ab127f40ba",
+      "width": 3650,
+      "height": 5475,
+      "format": "JPEG",
+      "source_urls": [
+        "https://vasili.nyc/cdn/shop/products/VASILI129.jpg?v=1668437623"
+      ],
+      "extraction_files": [
+        "images/032-VASILI129.jpg"
+      ]
+    },
+    {
+      "path": "assets/photos/cropextedobb.jpg",
+      "bytes": 516717,
+      "sha256": "506e5ebbf9d4e3983aa0b1700e2e74a10cf1be1ecacee38a545434daa755e321",
+      "width": 2506,
+      "height": 2694,
+      "format": "JPEG",
+      "source_urls": [
+        "https://vasili.nyc/cdn/shop/products/cropextedobb.jpg?v=1611175247"
+      ],
+      "extraction_files": [
+        "images/033-cropextedobb.jpg"
+      ]
+    }
+  ],
+  "user_references": [
+    {
+      "path": "references/01-chain-study-portrait.jpeg",
+      "bytes": 370922,
+      "sha256": "43b0be328799ffce9551d127c17dbcc560c74a8e4abac76888d7c37ee5d9df89",
+      "width": 1152,
+      "height": 1536,
+      "format": "JPEG",
+      "uploaded_filename": "27F90AFC-785B-4875-BA78-B8AD42333560.jpeg"
+    },
+    {
+      "path": "references/02-origin-map-overview.jpeg",
+      "bytes": 443217,
+      "sha256": "9af1be930c1574d371e90db79c2b142510d756a3a79ad98d143e370111d081e1",
+      "width": 1152,
+      "height": 1536,
+      "format": "JPEG",
+      "uploaded_filename": "D7C91E4A-A858-4B37-B32A-D4EB6F874BFB.jpeg"
+    },
+    {
+      "path": "references/03-origin-map-detail-a.jpeg",
+      "bytes": 425987,
+      "sha256": "515d780754c69dd2aabda0722697e74614f1a8b93dc5768e566185bffa2f2fa9",
+      "width": 1536,
+      "height": 1152,
+      "format": "JPEG",
+      "uploaded_filename": "6E00154D-8596-4663-A566-94ECCE7053FB.jpeg"
+    },
+    {
+      "path": "references/04-origin-map-detail-b.jpeg",
+      "bytes": 378549,
+      "sha256": "5494155a76f35c19e70fbda14a05ec5169b50fc2894499858ce2743892d5b091",
+      "width": 1536,
+      "height": 1152,
+      "format": "JPEG",
+      "uploaded_filename": "C44CE4B1-CCDA-4687-BFA4-D2C134F73CD1.jpeg"
+    },
+    {
+      "path": "references/05-origin-map-detail-c.jpeg",
+      "bytes": 353114,
+      "sha256": "4a779ac3dd69edbd705ef8d94b0e910aef5e3d097b6464bb582d0536d8c408b6",
+      "width": 1152,
+      "height": 1536,
+      "format": "JPEG",
+      "uploaded_filename": "A4AE7663-8DBE-45AD-A84A-CCC5658C83E1.jpeg"
+    },
+    {
+      "path": "references/06-origin-map-detail-d.jpeg",
+      "bytes": 361633,
+      "sha256": "f942493c97121e8a35b4aeccaa490a8f33728b9b9e72b869bc5524bbd10a52ff",
+      "width": 1152,
+      "height": 1536,
+      "format": "JPEG",
+      "uploaded_filename": "59FE7985-E78B-4480-8E67-E9CCE21C4EC4.jpeg"
+    },
+    {
+      "path": "references/07-chain-study-landscape-a.jpeg",
+      "bytes": 405892,
+      "sha256": "ef36aa14c5283c824c055a205c9aa51efe9c194637193a5bfa748091e2b368c2",
+      "width": 1536,
+      "height": 1152,
+      "format": "JPEG",
+      "uploaded_filename": "0AA3C226-3118-4D2E-A89D-16E8D600A940.jpeg"
+    },
+    {
+      "path": "references/08-chain-study-landscape-b.jpeg",
+      "bytes": 370764,
+      "sha256": "0b6f999b5587e0a424dc2f091b0e38350920e868c52c65c2c4590e156a530e94",
+      "width": 1536,
+      "height": 1152,
+      "format": "JPEG",
+      "uploaded_filename": "CC99C2CD-E71E-4177-AFB2-5B8877E2A030.jpeg"
+    },
+    {
+      "path": "references/current-homepage-draft.png",
+      "bytes": 2811326,
+      "sha256": "345396bc18a8654b9cfc18453ae3ce0bc351478ef6e95ba27e6b0a4559c70b3b",
+      "width": 2048,
+      "height": 921,
+      "format": "PNG",
+      "uploaded_filename": "Screen Shot 2026-09-30 at 8.07.22 PM.png"
+    },
+    {
+      "path": "references/logo-black-thick-original.jpg",
+      "bytes": 840,
+      "sha256": "8c39ee322203b709a7892c49e516f2e11d790892be0f0f1559b294418f26f511",
+      "width": 173,
+      "height": 72,
+      "format": "JPEG",
+      "uploaded_filename": "logo.black.thick.jpg"
+    }
+  ]
+}
