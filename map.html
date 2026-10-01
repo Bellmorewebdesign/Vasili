@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Explore — Vasili</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="assets/brand/vasili-logo-white.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="css/site.css">
+  <link rel="stylesheet" href="css/map.css">
+</head>
+<body class="is-map">
+  <a class="skip" href="#map-index-open">Skip to list view</a>
+  <header class="site-header">
+    <nav aria-label="Primary">
+      <a href="map.html" aria-current="page">Explore</a>
+      <a href="collection.html">Collection</a>
+    </nav>
+    <a class="logo" href="index.html"><img src="assets/brand/vasili-logo-white.svg" alt="Vasili — home" width="243" height="104"></a>
+    <nav class="nav-mobile" aria-label="Primary (small screens)">
+      <a href="map.html" aria-current="page">Explore</a>
+      <a href="collection.html">Collection</a>
+    </nav>
+  </header>
+
+  <main id="main" class="map-page">
+    <div class="map-stage" id="stage" tabindex="0"
+         aria-label="Drawing canvas. Drag, or use the arrow keys, to move. Plus and minus keys zoom. Tab to reach each drawing.">
+      <svg id="map" class="lw is-intro" xmlns="http://www.w3.org/2000/svg" aria-labelledby="map-title">
+        <title id="map-title">Explorable redraw of the client's chain drawing and the forms that branch from it</title>
+        <g id="world">
+          <g id="line-layer"></g>
+          <g id="chain-layer"></g>
+          <g id="node-layer"></g>
+          <g id="piece-layer"></g>
+        </g>
+      </svg>
+    </div>
+
+    <nav class="map-trail" id="trail" aria-label="Path from the chain to the selected drawing"></nav>
+
+    <div class="map-tools" role="toolbar" aria-label="Map controls">
+      <button type="button" class="tool" id="zoom-in" aria-label="Zoom in">+</button>
+      <button type="button" class="tool" id="zoom-out" aria-label="Zoom out">&minus;</button>
+      <button type="button" class="tool tool--text" id="overview">Overview</button>
+      <button type="button" class="tool tool--text" id="map-index-open">Index</button>
+      <a class="tool tool--text tool--link" href="collection.html">Collection</a>
+    </div>
+
+    <p class="map-hint" id="hint" aria-hidden="true">Drag to move &nbsp;·&nbsp; Select a drawing</p>
+
+    <aside class="panel" id="panel" aria-labelledby="panel-title" hidden>
+      <div class="panel-inner" id="panel-content"></div>
+    </aside>
+
+    <dialog class="index-dialog" id="index-dialog" aria-labelledby="index-title">
+      <div class="index-head">
+        <h2 class="label" id="index-title">Index</h2>
+        <button type="button" class="btn" id="index-close">Close</button>
+      </div>
+      <div id="index-list"></div>
+    </dialog>
+
+    <noscript><p class="noscript">The map needs JavaScript. <a href="collection.html">Open the Collection</a>.</p></noscript>
+  </main>
+
+  <script src="data/origin-map.js"></script>
+  <script src="data/products.js"></script>
+  <script src="data/demo-connections.js"></script>
+  <script src="js/glyphs.js"></script>
+  <script src="js/site.js"></script>
+  <script src="js/map.js"></script>
+</body>
+</html>

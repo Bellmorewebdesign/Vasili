@@ -1,3 +1,29 @@
+# Vasili — sample site (prototype)
+
+The sample site is now built in this repository: `index.html` (home), `map.html` (explore / origin map), `collection.html`, and `product.html?id=…` (one reusable product layout). All visible editorial text is placeholder only.
+
+## View it
+
+- **GitHub Pages:** Settings → Pages → Deploy from a branch → choose the branch and `/ (root)`. Everything uses relative paths, so it works under `https://<user>.github.io/<repo>/`.
+- **Locally:** run `python3 -m http.server` in this folder and open `http://localhost:8000/`.
+
+## Where things live
+
+| File | What it holds |
+| --- | --- |
+| `data/origin-map.js` | Map nodes: stable ids, positions, which redrawn shape each shows |
+| `data/demo-connections.js` | **Provisional** piece → node links (each shows `[Connection to confirm]`) |
+| `data/products.js` | The four sample pieces and their photos (placeholder text only) |
+| `js/glyphs.js` | Vector redraws of the shapes in the client drawings |
+| `js/map.js` | Map pan/zoom, selection, URL state, detail panel |
+| `assets/web/` | Lighter copies of the photos, made by `tools/make-web-images.sh`; originals in `assets/photos/` are untouched |
+
+Map URLs: `map.html?node=a1-1` opens that node's panel; `&piece=piece-a` opens a piece inside it. Every product page's **See origin** links to its node this way.
+
+To confirm a connection: in `data/demo-connections.js`, set `node` to the right id and `confirmed: true`.
+
+---
+
 # Vasili — assets and Claude handoff
 
 This is an input kit for building one visual prototype, not an already-built website.

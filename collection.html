@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Collection — Vasili</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="assets/brand/vasili-logo-white.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="css/site.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body data-page="collection">
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <nav aria-label="Primary">
+      <a href="map.html">Explore</a>
+      <a href="collection.html" aria-current="page">Collection</a>
+    </nav>
+    <a class="logo" href="index.html"><img src="assets/brand/vasili-logo-white.svg" alt="Vasili — home" width="243" height="104"></a>
+    <nav class="nav-mobile" aria-label="Primary (small screens)">
+      <a href="map.html">Explore</a>
+      <a href="collection.html" aria-current="page">Collection</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <div class="page-head">
+      <div>
+        <span class="label">Collection</span>
+        <h1 class="ph-h">[Heading]</h1>
+        <p class="ph-t">[Text]</p>
+      </div>
+      <a class="btn" href="map.html">Explore<span class="arrow"></span></a>
+    </div>
+    <div class="collection-grid" id="collection-grid"></div>
+  </main>
+
+  <footer class="site-footer">
+    <form class="signup" novalidate aria-labelledby="signup-h-collection">
+      <h2 class="ph-h" id="signup-h-collection">[Heading]</h2>
+      <div class="signup-row">
+        <label class="sr-only" for="email-collection">Email address</label>
+        <input id="email-collection" type="email" name="email" placeholder="[Email]" autocomplete="off">
+        <button type="submit">Join</button>
+      </div>
+      <p class="note">[Text] — layout only, not connected.</p>
+    </form>
+    <div>
+      <nav class="footer-nav" aria-label="Footer">
+        <a href="map.html">Explore</a>
+        <a href="collection.html">Collection</a>
+        <a href="index.html">Home</a>
+      </nav>
+      <img class="footer-mark" src="assets/brand/vasili-logo-white.svg" alt="" width="243" height="104">
+    </div>
+  </footer>
+
+  <script src="data/origin-map.js"></script>
+  <script src="data/products.js"></script>
+  <script src="data/demo-connections.js"></script>
+  <script src="js/glyphs.js"></script>
+  <script src="js/site.js"></script>
+  <script src="js/pages.js"></script>
+</body>
+</html>
