@@ -1,6 +1,44 @@
 # Vasili — sample site (prototype)
 
-The sample site is now built in this repository: `index.html` (home), `map.html` (explore / origin map), `collection.html`, and `product.html?id=…` (one reusable product layout). All visible editorial text is placeholder only.
+A static sample of the full Vasili site with an interactive version of the client's chain drawing hidden inside it. All visible editorial text is placeholder only (`[Heading]`, `[Text]`, `[Product name]`, `[Video]`, `[Ad]` …).
+
+## Pages
+
+| Role | File |
+| --- | --- |
+| Home | `index.html` |
+| Shop / All products | `shop.html` |
+| Collections | `collection.html` (frontpage), `collection-bracelet.html`, `collection-earring.html`, `collection-necklace.html`, `collection-object.html`, `collection-ring.html` |
+| Products (one template) | `product.html?id=piece-a` … `piece-d` |
+| Studio | `about.html`, `preface.html`, `collaborations.html`, `custom-inquiries.html` |
+| News | `news.html` (News), `blog.html` + `blog-post.html?id=1-3` (News blog) |
+| Help | `faq.html`, `shipping-policy.html`, `return-policy.html` |
+
+The header shows Shop, Collections, About, News and a Menu that reaches every page; the footer repeats the groups. All pages are generated from one template: edit `tools/build-pages.py`, run `python3 tools/build-pages.py`, commit the `.html` output.
+
+## The hidden drawing (not in any navigation)
+
+`map.html` is an interactive redraw of the main sheet (`references/02` + close-ups 03-06): the vertical spiked chain with the eight families arranged around it as drawn. It is deliberately **not** linked from the header, menu, footer or homepage. The only ways in:
+
+- a quiet **See origin** link inside each product's description → opens the map on that piece, focused, with its panel open (`map.html?node=d1-2&piece=piece-a`);
+- one FAQ answer → the map overview.
+
+Once inside, visitors can open further hidden layers from each panel:
+- **Study** (`map.html?node=…&view=study`): a close view of one drawn form, its branches and neighbours, a collapsed sketch detail cropped from the client's drawing, and a video space. The chain's own study pulls a link apart into its parts.
+- **Drawer** (`drawer.html?family=d&from=…`): every form in a family, the related pieces with all their photos (lightbox), and video spaces.
+
+Every hidden view has Close / Back controls, works by keyboard and touch, and keeps its state in the URL, so refresh and the browser's Back button work.
+
+## Data
+
+| File | What it holds |
+| --- | --- |
+| `data/origin-map.js` | The drawing: node ids, positions and connecting lines in "sheet units" (pixels of the overview photo) |
+| `data/demo-connections.js` | **Provisional** piece → drawing links, each shown with `[Connection to confirm]` |
+| `data/products.js`, `data/collections.js` | The four sample pieces, their photos and collection membership |
+| `assets/web/` | Lighter photo copies (`tools/make-web-images.sh`); `assets/web/sketch/` holds tight crops of the drawings for the sketch details. Originals are untouched. |
+
+To confirm a connection: in `data/demo-connections.js`, set `node` to the right id and `confirmed: true`.
 
 ## Deploy on GitHub Pages (main branch, root)
 
@@ -17,7 +55,7 @@ Why it works from the root:
 - Every link and asset path is relative (no leading `/`), so it works under the `/Vasili/` subpath.
 - Map state lives in the query string (`map.html?node=a1-1`), which needs no server rewrites; refresh, Back and shared links work.
 
-Before pushing changes, run `python3 tools/check-pages.py`. It fails if a file is missing, a path's letter case is wrong (GitHub Pages is case-sensitive even when your computer is not), or a link starts with `/`.
+Before pushing changes, run `python3 tools/check-pages.py`. It fails if a file is missing, a path's letter case is wrong (GitHub Pages is case-sensitive even when your computer is not), a link starts with `/`, or a regular page links to the hidden map.
 
 To view locally: run `python3 -m http.server` in this folder and open `http://localhost:8000/`.
 

@@ -7,10 +7,14 @@
  * reference only and is never shown on the page.
  *
  * `photos` are base names; the page picks assets/web/<base>-<480|960|1600>.jpg.
+ * `collections` places each piece by what its photos show (link bracelet,
+ * ring). Earring, Necklace and Object have no sample piece yet and show
+ * empty placeholder slots.
  */
 window.VASILI_PRODUCTS = [
   {
     id: "piece-a",
+    collections: ["bracelet", "frontpage"],
     code: "01",
     source_handle: "big-chunky-extendo-bracelet",
     photos: [
@@ -24,6 +28,7 @@ window.VASILI_PRODUCTS = [
   },
   {
     id: "piece-b",
+    collections: ["ring", "frontpage"],
     code: "02",
     source_handle: "gold-spur-ring",
     photos: [
@@ -33,6 +38,7 @@ window.VASILI_PRODUCTS = [
   },
   {
     id: "piece-c",
+    collections: ["ring", "frontpage"],
     code: "03",
     source_handle: "lull-ring",
     photos: [
@@ -42,6 +48,7 @@ window.VASILI_PRODUCTS = [
   },
   {
     id: "piece-d",
+    collections: ["bracelet", "frontpage"],
     code: "04",
     source_handle: "mirror-link-bracelet-mids",
     photos: [

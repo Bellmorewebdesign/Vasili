@@ -13,6 +13,7 @@ Fails (exit 1) if:
   - a path climbs above the site root with "../"
   - a photo referenced by data/products.js is missing a web size
   - a file is over GitHub's 100 MB limit
+  - a regular page links to the hidden map/drawer (only the FAQ answer may)
 """
 import os, re, sys
 
@@ -99,6 +100,17 @@ for fn in os.listdir(os.path.join(ROOT, "js")):
     text = open(os.path.join(ROOT, "js", fn), encoding="utf-8").read()
     for m in re.finditer(r'''["'](assets/[^"'+]+\.\w+)["']''', text):
         check_ref(m.group(1), "js/" + fn, base="")
+
+# The origin map is a discovery: regular pages must not link to it, except the
+# one contextual FAQ answer (product descriptions add theirs from js/pages.js).
+HIDDEN = re.compile(r'href="(?:\./)?(?:map|drawer)\.html')
+for fn in sorted(os.listdir(ROOT)):
+    if not fn.endswith(".html") or fn in ("map.html", "drawer.html"):
+        continue
+    n = len(HIDDEN.findall(open(os.path.join(ROOT, fn), encoding="utf-8").read()))
+    allowed = 1 if fn == "faq.html" else 0
+    if n != allowed:
+        errors.append(f"{fn}: {n} link(s) to the hidden map/drawer (allowed: {allowed})")
 
 if errors:
     print("NOT READY for GitHub Pages:")
