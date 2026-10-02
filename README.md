@@ -23,6 +23,8 @@ The header shows Shop, Collections, About, News and a Menu that reaches every pa
 - a quiet **See origin** link inside each product's description → opens the map on that piece, focused, with its panel open (`map.html?node=d1-2&piece=piece-a`);
 - one FAQ answer → the map overview.
 
+**Discovery:** the drawing never opens on the overview. Visitors land close on the chain; forms they haven't reached are hidden, and the forms branching from anything they've found show as faint silhouettes. Zooming out and panning only cover what has been found. After 10 forms across 3 families (set in `data/origin-map.js` → `unlock`), the Overview button unlocks and the whole drawing opens. Progress is remembered in the visitor's browser; add `?forget=1` to the map address (`map.html?forget=1`) to reset it, e.g. before showing the client.
+
 Once inside, visitors can open further hidden layers from each panel:
 - **Study** (`map.html?node=…&view=study`): a close view of one drawn form, its branches and neighbours, a collapsed sketch detail cropped from the client's drawing, and a video space. The chain's own study pulls a link apart into its parts.
 - **Drawer** (`drawer.html?family=d&from=…`): every form in a family, the related pieces with all their photos (lightbox), and video spaces.

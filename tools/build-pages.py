@@ -372,6 +372,7 @@ built.append(page("map.html", "Origin — Vasili", '''  <main id="main" class="m
     </div>
 
     <p class="map-hint" id="hint" aria-hidden="true">Drag to move &nbsp;·&nbsp; Select a form</p>
+    <p class="sr-only" id="map-live" aria-live="polite"></p>
 
     <aside class="panel" id="panel" aria-labelledby="panel-title" hidden>
       <div class="panel-inner" id="panel-content"></div>

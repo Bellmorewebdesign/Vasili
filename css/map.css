@@ -280,3 +280,23 @@ body.has-study .map-tools, body.has-study .map-trail, body.has-study .map-hint {
   .study-body { grid-template-columns: 1fr; }
   .study-art { min-height: 0; }
 }
+
+/* ----- discovery: fog, silhouettes, locked overview ----- */
+#map .node, #map .ln, #map .ln-decor { transition: opacity .9s ease, stroke .4s; }
+#map .node.is-fog, #map .ln.is-fog, #map .ln-decor.is-fog { opacity: 0; pointer-events: none; }
+/* reachable but not yet opened: a faint silhouette, like an unseen entry */
+.node.is-hint .art { opacity: .16; filter: blur(.4px); }
+.node.is-hint .ring { opacity: .3; stroke-dasharray: 2 3; }
+.node.is-hint .nlabel { opacity: 0; }
+.node.is-hint .glint { opacity: 0; }
+.node.is-hint:hover .art, .node.is-hint:focus-visible .art { opacity: .5; filter: none; }
+#map:not(.is-open) .chain-art { transition: opacity .9s; }
+
+.tool.is-locked { color: var(--muted); border-style: dashed; cursor: help; }
+.tool.is-locked .ov-progress { margin-left: 8px; color: var(--ink); letter-spacing: .08em; }
+.tool.is-shake { animation: shake .45s ease; }
+@keyframes shake { 20%, 60% { transform: translateX(-4px); } 40%, 80% { transform: translateX(4px); } }
+.tool.is-unlocking { animation: unlock 1.6s ease 2; border-color: var(--glow); color: var(--ice); }
+@keyframes unlock { 50% { box-shadow: 0 0 0 6px rgba(143, 208, 255, .18); } }
+.map-hint.is-celebrate { color: var(--ice); }
+.idx-unknown { color: var(--ink-dim); letter-spacing: .3em; padding: 6px 0; }
