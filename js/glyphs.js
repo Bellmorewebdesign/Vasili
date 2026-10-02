@@ -120,11 +120,18 @@
   }
   /* Faceted octagonal link (circled link segments, lower left). */
   function octLink(x, y, ang, L) {
-    var pts = [], i, a = L * 0.5, b = L * 0.32;
-    for (i = 0; i < 8; i++) { var t = rad(22.5 + i * 45); pts.push(P(a * Math.cos(t) * 1.08, b * Math.sin(t) * 1.25)); }
-    return g(x, y, ang, '<path class="g-fill" d="M' + pts.join("L") + 'Z"/>' +
-      '<rect class="g-thin" x="' + f(-a * 0.45) + '" y="' + f(-b * 0.4) + '" width="' + f(a * 0.9) + '" height="' + f(b * 0.8) + '"/>' +
-      '<path class="g-fill" d="M' + P(-a * 0.2, -b * 1.25) + "L" + P(0, -b * 1.75) + "L" + P(a * 0.2, -b * 1.25) + 'Z"/>');
+    // elongated faceted link: bevelled outline, rounded slot, bevel lines at the
+    // corners, and a small spur on each side (the spurred links of the D tree)
+    var a = L * 0.52, b = L * 0.3, c = L * 0.2;
+    var out = "M" + P(-a + c, -b) + "L" + P(a - c, -b) + "L" + P(a, -b + c) + "L" + P(a, b - c) + "L" + P(a - c, b) +
+      "L" + P(-a + c, b) + "L" + P(-a, b - c) + "L" + P(-a, -b + c) + "Z";
+    var sw = L * 0.09, sh = L * 0.2;
+    return g(x, y, ang,
+      '<path class="g-fill" d="M' + P(-sw, -b + 0.2) + "L" + P(0, -b - sh) + "L" + P(sw, -b + 0.2) + "M" + P(-sw, b - 0.2) + "L" + P(0, b + sh) + "L" + P(sw, b - 0.2) + '"/>' +
+      '<path class="g-fill" d="' + out + '"/>' +
+      '<rect class="g-thin" x="' + f(-a * 0.52) + '" y="' + f(-b * 0.38) + '" width="' + f(a * 1.04) + '" height="' + f(b * 0.76) + '" rx="' + f(b * 0.38) + '"/>' +
+      '<path class="g-thin" d="M' + P(a - c, -b) + "L" + P(a * 0.52, -b * 0.38) + "M" + P(a - c, b) + "L" + P(a * 0.52, b * 0.38) +
+      "M" + P(-a + c, -b) + "L" + P(-a * 0.52, -b * 0.38) + "M" + P(-a + c, b) + "L" + P(-a * 0.52, b * 0.38) + '"/>');
   }
   function bead(x, y, r) { return '<circle class="g-fill" cx="' + f(x) + '" cy="' + f(y) + '" r="' + f(r) + '"/>'; }
 

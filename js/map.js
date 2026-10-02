@@ -94,9 +94,9 @@
     var L = layer("node-layer");
     M.nodes.forEach(function (n) {
       var kids = children[n.id].length;
-      var a = el("a", { href: href({ node: n.id }), class: "node" + (n.depth === 1 ? " node--head" : "") + (n.glyph.type === "bracket" ? " node--bracket" : ""), "data-node": n.id,
+      var a = el("a", { href: href({ node: n.id }), class: "node" + (n.depth === 1 ? " node--head" : "") + (n.circled ? " node--circled" : "") + (n.glyph.type === "bracket" ? " node--bracket" : ""), "data-node": n.id,
         style: "--d:" + n.depth, "aria-label": "Form " + S.code(n.id) + (kids ? ", " + kids + (kids === 1 ? " branch" : " branches") : "") });
-      a.appendChild(el("circle", { class: "halo", cx: n.x, cy: n.y, r: n.r * 1.8 }));
+      a.appendChild(el("circle", { class: "halo", cx: n.x, cy: n.y, r: n.r * 1.45 }));
       if (n.glyph.type === "bracket") {
         a.appendChild(el("path", { class: "hitline", d: "M" + n.x + " " + (n.y - n.glyph.h) + "V" + (n.y + n.glyph.h) }));
       }
@@ -106,7 +106,8 @@
       if (CONN.some(function (c) { return c.node === n.id; })) {
         a.appendChild(el("circle", { class: "glint", cx: n.x + n.r * 0.72, cy: n.y - n.r * 0.72, r: 1.6 }));
       }
-      a.appendChild(el("text", { class: "nlabel", x: n.x + n.r + 3, y: n.y - n.r * 0.55, "aria-hidden": "true" }, S.code(n.id)));
+      // label sits on the upper-right diagonal, clear of the drawing's horizontal/vertical lines
+      a.appendChild(el("text", { class: "nlabel", x: n.x + n.r * 0.78 + 1.5, y: n.y - n.r * 0.78 - 1.5, "aria-hidden": "true" }, S.code(n.id)));
       L.appendChild(a);
     });
   }
@@ -136,7 +137,7 @@
   var cam = { cx: B.x + B.w / 2, cy: B.y + B.h / 2, s: 1 }, anim = null;
   function size() { var r = stage.getBoundingClientRect(); return { w: r.width || 1, h: r.height || 1 }; }
   function fitScale() { var z = size(); return Math.max(B.w / (z.w * 0.96), B.h / Math.max(120, z.h - TOOLBAR - 30)); }
-  function limits() { var f = fitScale(); return { min: 0.05, max: f * 1.6 }; }
+  function limits() { var f = fitScale(); return { min: 0.09, max: f * 1.6 }; }
   function apply() {
     var z = size();
     svg.setAttribute("viewBox", [cam.cx - z.w * cam.s / 2, cam.cy - z.h * cam.s / 2, z.w * cam.s, z.h * cam.s].join(" "));
@@ -170,7 +171,7 @@
   function focusBox(b, instant) {
     var z = size(), c = covers(), top = 56;
     var aw = z.w - c.right, ah = z.h - c.bottom - top - (c.bottom ? 8 : TOOLBAR);
-    var s = Math.max(b.w / (aw * 0.82), b.h / (ah * 0.82), 0.12);
+    var s = Math.max(b.w / (aw * 0.82), b.h / (ah * 0.82), 0.22);
     var vcx = (aw) / 2, vcy = top + ah / 2; // centre of the visible area, in px
     moveTo({ cx: b.x + b.w / 2 + (z.w / 2 - vcx) * s, cy: b.y + b.h / 2 + (z.h / 2 - vcy) * s, s: s }, instant);
   }
