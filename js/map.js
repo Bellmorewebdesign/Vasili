@@ -35,13 +35,38 @@
   var linkPts = M.chain.links.map(function (p) { return { x: p[0], y: p[1] }; });
   var CHAIN_CENTER = { x: 510, y: 430 };
 
-  /* ---------- discovery memory (per visitor, optional) ---------- */
-  var found = {};
-  try { (JSON.parse(localStorage.getItem("vasili-found") || "[]")).forEach(function (id) { found[id] = true; }); } catch (e) { /* storage blocked */ }
+  /* ---------- discovery (per visitor) ----------
+   * The drawing opens close on the chain. Forms appear as they are reached;
+   * zooming out and panning only cover what has been found. After enough
+   * exploring (UNLOCK) the Overview opens and the whole sheet is revealed.
+   * map.html?forget=1 clears a visitor's progress (handy for client demos). */
+  var UNLOCK = M.unlock || { forms: 10, families: 3 };
+  var START = M.start || { x: 420, y: 250, w: 200, h: 300 };
+  var found = {}, open = false;
+  try {
+    if (new URLSearchParams(location.search).get("forget")) {
+      localStorage.removeItem("vasili-found"); localStorage.removeItem("vasili-open");
+      var u = new URL(location.href); u.searchParams.delete("forget"); history.replaceState(null, "", u.pathname.split("/").pop() + u.search);
+    }
+    (JSON.parse(localStorage.getItem("vasili-found") || "[]")).forEach(function (id) { found[id] = true; });
+    open = localStorage.getItem("vasili-open") === "1";
+  } catch (e) { /* storage blocked: discovery lasts for this visit only */ }
+  function progress() {
+    var forms = Object.keys(found).filter(function (k) { return nodes[k] && k !== "chain"; });
+    var fams = {}; forms.forEach(function (k) { fams[family(k)] = true; });
+    return { forms: forms.length, families: Object.keys(fams).length };
+  }
   function remember(id) {
-    if (!id || found[id]) return;
+    if (!id || found[id] || !nodes[id]) return;
     found[id] = true;
     try { localStorage.setItem("vasili-found", JSON.stringify(Object.keys(found))); } catch (e) { /* ignore */ }
+    var pr = progress();
+    if (!open && pr.forms >= UNLOCK.forms && pr.families >= UNLOCK.families) {
+      open = true;
+      try { localStorage.setItem("vasili-open", "1"); } catch (e) { /* ignore */ }
+      announce("The whole drawing is open \u00b7 Overview", true);
+    }
+    updateOverviewButton();
   }
 
   /* ---------- render ---------- */
@@ -137,7 +162,27 @@
   var cam = { cx: B.x + B.w / 2, cy: B.y + B.h / 2, s: 1 }, anim = null;
   function size() { var r = stage.getBoundingClientRect(); return { w: r.width || 1, h: r.height || 1 }; }
   function fitScale() { var z = size(); return Math.max(B.w / (z.w * 0.96), B.h / Math.max(120, z.h - TOOLBAR - 30)); }
-  function limits() { var f = fitScale(); return { min: 0.09, max: f * 1.6 }; }
+  /* The area the camera may show: everything once open, otherwise the start
+     view plus every form found so far (with room around it). */
+  function region() {
+    if (open) return B;
+    var x0 = START.x, y0 = START.y, x1 = START.x + START.w, y1 = START.y + START.h;
+    Object.keys(found).forEach(function (k) {
+      var n = nodes[k]; if (!n || k === "chain") return;
+      var m = n.r + 70;
+      x0 = Math.min(x0, n.x - m); y0 = Math.min(y0, n.y - m); x1 = Math.max(x1, n.x + m); y1 = Math.max(y1, n.y + m);
+    });
+    CONN.forEach(function (c) { // a found form's piece photo counts as found too
+      if (!found[c.node]) return;
+      x0 = Math.min(x0, c.at[0] - 60); y0 = Math.min(y0, c.at[1] - 60); x1 = Math.max(x1, c.at[0] + 60); y1 = Math.max(y1, c.at[1] + 60);
+    });
+    return { x: x0, y: y0, w: x1 - x0, h: y1 - y0 };
+  }
+  function limits() {
+    var f = fitScale(), z = size(), R = region();
+    var reach = Math.max(R.w / (z.w * 0.9), R.h / Math.max(120, z.h - TOOLBAR - 40));
+    return { min: 0.09, max: open ? f * 1.6 : Math.max(0.3, Math.min(f * 1.6, reach)) };
+  }
   function apply() {
     var z = size();
     svg.setAttribute("viewBox", [cam.cx - z.w * cam.s / 2, cam.cy - z.h * cam.s / 2, z.w * cam.s, z.h * cam.s].join(" "));
@@ -146,9 +191,17 @@
   function clampCam(c) {
     var l = limits(), z = size();
     c.s = Math.min(l.max, Math.max(l.min, c.s));
-    var hx = z.w * c.s / 2, hy = z.h * c.s / 2;
-    c.cx = Math.min(B.x + B.w + hx - 60, Math.max(B.x - hx + 60, c.cx));
-    c.cy = Math.min(B.y + B.h + hy - 60, Math.max(B.y - hy + 60, c.cy));
+    var hx = z.w * c.s / 2, hy = z.h * c.s / 2, R = region();
+    if (open) {
+      c.cx = Math.min(B.x + B.w + hx - 60, Math.max(B.x - hx + 60, c.cx));
+      c.cy = Math.min(B.y + B.h + hy - 60, Math.max(B.y - hy + 60, c.cy));
+    } else {
+      // the centre of the visible area (beside the panel / above the sheet)
+      // stays inside what has been discovered
+      var cv = covers(), ox = cv.right * c.s / 2, oy = cv.bottom * c.s / 2;
+      c.cx = Math.min(R.x + R.w + ox, Math.max(R.x + ox, c.cx));
+      c.cy = Math.min(R.y + R.h + oy, Math.max(R.y + oy, c.cy));
+    }
     return c;
   }
   function moveTo(t, instant) {
@@ -175,7 +228,9 @@
     var vcx = (aw) / 2, vcy = top + ah / 2; // centre of the visible area, in px
     moveTo({ cx: b.x + b.w / 2 + (z.w / 2 - vcx) * s, cy: b.y + b.h / 2 + (z.h / 2 - vcy) * s, s: s }, instant);
   }
+  function startCam(instant) { focusBox(START, instant); }
   function overviewCam(instant) {
+    if (!open) { startCam(instant); return; }
     var s = fitScale(), z = size(), cx = B.x + B.w / 2;
     if (z.w < 700 && z.h > z.w) { s = Math.min(s, B.h / Math.max(120, z.h - TOOLBAR - 30) * 0.85); cx = CHAIN_CENTER.x; }
     moveTo({ cx: cx, cy: B.y + B.h / 2 + (TOOLBAR / 2 - 20) * s, s: s }, instant);
@@ -196,6 +251,7 @@
   function local(e) { var r = stage.getBoundingClientRect(); return { x: e.clientX - r.left, y: e.clientY - r.top }; }
   function zoomAt(px, py, k) {
     var z = size(), l = limits(), wx = cam.cx + (px - z.w / 2) * cam.s, wy = cam.cy + (py - z.h / 2) * cam.s;
+    if (k > 1 && !open && cam.s >= l.max * 0.999) nudge();
     var s = Math.min(l.max, Math.max(l.min, cam.s * k));
     cam = clampCam({ cx: wx - (px - z.w / 2) * s, cy: wy - (py - z.h / 2) * s, s: s });
     apply();
@@ -251,8 +307,38 @@
   });
   document.getElementById("zoom-in").addEventListener("click", function () { var z = size(); zoomAt(z.w / 2, z.h / 2, 1 / 1.4); });
   document.getElementById("zoom-out").addEventListener("click", function () { var z = size(); zoomAt(z.w / 2, z.h / 2, 1.4); });
-  document.getElementById("overview").addEventListener("click", function () { navigate({}); overviewCam(); });
-  function dismissHint() { if (hint) hint.classList.add("is-gone"); }
+  var ovBtn = document.getElementById("overview");
+  ovBtn.addEventListener("click", function () {
+    if (!open) { nudge(); return; }
+    navigate({}); overviewCam();
+  });
+  function updateOverviewButton() {
+    var pr = progress(), n = Math.min(pr.forms, UNLOCK.forms);
+    ovBtn.setAttribute("aria-disabled", String(!open));
+    ovBtn.classList.toggle("is-locked", !open);
+    ovBtn.innerHTML = open ? "Overview" : 'Overview <span class="ov-progress">' + n + "/" + UNLOCK.forms + "</span>";
+    ovBtn.setAttribute("aria-label", open ? "Overview of the whole drawing" :
+      "Overview, locked: " + n + " of " + UNLOCK.forms + " forms found" + (pr.families < UNLOCK.families ? ", in " + pr.families + " of " + UNLOCK.families + " families" : ""));
+  }
+  var noteTimer = null;
+  function announce(text, celebrate) {
+    if (!hint) return;
+    hint.textContent = text;
+    hint.classList.remove("is-gone");
+    hint.classList.toggle("is-celebrate", !!celebrate);
+    clearTimeout(noteTimer);
+    noteTimer = setTimeout(function () { hint.classList.add("is-gone"); }, celebrate ? 4200 : 2400);
+    var live = document.getElementById("map-live");
+    if (live) live.textContent = text;
+    if (celebrate) { ovBtn.classList.remove("is-unlocking"); ovBtn.getBoundingClientRect(); ovBtn.classList.add("is-unlocking"); }
+  }
+  function nudge() {
+    var pr = progress(), left = Math.max(0, UNLOCK.forms - pr.forms), famLeft = Math.max(0, UNLOCK.families - pr.families);
+    announce(left ? "Find " + left + " more form" + (left === 1 ? "" : "s") + " to see further"
+      : "Explore " + famLeft + " more famil" + (famLeft === 1 ? "y" : "ies") + " to see further");
+    ovBtn.classList.remove("is-shake"); ovBtn.getBoundingClientRect(); ovBtn.classList.add("is-shake");
+  }
+  function dismissHint() { if (hint && !hint.classList.contains("is-celebrate")) hint.classList.add("is-gone"); }
 
   /* ---------- state + URL ---------- */
   var current = { node: null, piece: null, from: null, view: null };
@@ -303,6 +389,18 @@
     children.chain.forEach(function (id) { awake[id] = true; });
     path.forEach(function (id) { awake[id] = true; children[id].forEach(function (c) { awake[c] = true; }); });
     Object.keys(found).forEach(function (id) { if (nodes[id]) { awake[id] = true; } });
+    // fog: a form is visible once found, while on the current path, or as a
+    // silhouette when something it branches from has been found
+    var seen = { chain: true };
+    if (open) M.nodes.forEach(function (n) { seen[n.id] = true; });
+    else {
+      ["chain"].concat(Object.keys(found), path).forEach(function (id) {
+        if (!nodes[id]) return;
+        seen[id] = true;
+        (children[id] || []).forEach(function (c) { seen[c] = true; });
+      });
+    }
+    svg.classList.toggle("is-open", open);
 
     svg.classList.toggle("has-selection", !!st.node);
     svg.querySelectorAll(".node").forEach(function (a) {
@@ -313,19 +411,21 @@
       a.classList.toggle("is-family", !!fam && family(id) === fam);
       a.classList.toggle("is-dormant", !awake[id]);
       a.classList.toggle("is-found", !!found[id]);
-      a.setAttribute("tabindex", awake[id] ? "0" : "-1");
+      a.classList.toggle("is-fog", !seen[id]);
+      a.classList.toggle("is-hint", !!seen[id] && !found[id] && path.indexOf(id) === -1);
+      a.setAttribute("tabindex", seen[id] && awake[id] ? "0" : "-1");
     });
     svg.querySelector(".chain-node").classList.toggle("is-selected", st.node === "chain");
     M.nodes.forEach(function (n) {
       var ln = document.getElementById("ln-" + n.id), dc = document.getElementById("dc-" + n.id), tr = document.getElementById("tr-" + n.id);
       var on = path.indexOf(n.id) !== -1 || (st.node && n.parent === st.node);
-      if (ln) { ln.classList.toggle("is-path", on); ln.classList.toggle("is-family", !!fam && family(n.id) === fam); ln.classList.toggle("is-dormant", !awake[n.id]); }
-      if (dc) dc.classList.toggle("is-path", path.indexOf(n.id) !== -1);
+      if (ln) { ln.classList.toggle("is-path", on); ln.classList.toggle("is-family", !!fam && family(n.id) === fam); ln.classList.toggle("is-dormant", !awake[n.id]); ln.classList.toggle("is-fog", !seen[n.id]); }
+      if (dc) { dc.classList.toggle("is-path", path.indexOf(n.id) !== -1); dc.classList.toggle("is-fog", !found[n.id] && path.indexOf(n.id) === -1 && !open); }
       if (tr) tr.classList.toggle("is-on", path.indexOf(n.id) !== -1);
     });
     svg.querySelectorAll(".piece").forEach(function (a) {
       var id = a.getAttribute("data-piece"), nid = a.getAttribute("data-node");
-      var show = st.piece === id || (!!fam && family(nid) === fam) || st.node === "chain";
+      var show = !!seen[nid] && (st.piece === id || (!!fam && family(nid) === fam));
       a.classList.toggle("is-shown", show);
       a.classList.toggle("is-selected", id === st.piece || id === st.from);
       a.setAttribute("tabindex", show ? "0" : "-1");
@@ -403,7 +503,8 @@
     h += discoveries(id);
     h += '<nav class="panel-nav" aria-label="Panel navigation">';
     if (n.parent) h += '<a class="btn" href="' + href({ node: n.parent }) + '"><span class="arrow arrow--back"></span>Toward origin · ' + S.code(n.parent) + "</a>";
-    h += '<a class="btn" href="map.html" data-overview>Overview</a></nav>';
+    if (open) h += '<a class="btn" href="map.html" data-overview>Overview</a>';
+    h += "</nav>";
     return h;
   }
   function piecePanel(st) {
@@ -511,7 +612,7 @@
         if (opts.user && back) back.focus({ preventScroll: true });
       }
       document.title = "Origin — Vasili";
-      if (opts.fromHistory || opts.initial) overviewCam(opts.initial);
+      if (opts.initial) startCam(true);
       return;
     }
     panelContent.innerHTML = st.piece ? piecePanel(st) : nodePanel(st);
@@ -523,7 +624,7 @@
     document.title = (st.piece ? S.product(st.piece).code : S.code(st.node)) + " — Origin — Vasili";
 
     var moved = !(prev.node === st.node && prev.piece === st.piece);
-    if (st.node === "chain") { if (moved) overviewCam(opts.initial); }
+    if (st.node === "chain") { if (moved) startCam(opts.initial); }
     else if (moved) focusBox(boxFor(st.node, st.piece), opts.initial);
     if (!st.view && (opts.user || opts.initial)) {
       var t = document.getElementById("panel-title");
@@ -534,19 +635,21 @@
   /* ---------- index (list view) ---------- */
   function updateCount() {
     var el = document.getElementById("found-count");
-    if (el) el.textContent = Object.keys(found).filter(function (k) { return nodes[k]; }).length + " / " + (M.nodes.length + 1);
+    if (el) el.textContent = progress().forms + " / " + M.nodes.length;
   }
   function buildIndex() {
     function list(id) {
       var kids = children[id] || [];
       if (!kids.length) return "";
-      return "<ul>" + kids.map(function (k) {
-        return '<li><a href="' + href({ node: k }) + '"' + (found[k] ? ' class="is-found"' : "") + ">" + S.code(k) + "</a>" + list(k) + "</li>";
-      }).join("") + "</ul>";
+      var shown = kids.filter(function (k) { return open || found[k] || found[id] || id === "chain"; });
+      var hidden = kids.length - shown.length;
+      return "<ul>" + shown.map(function (k) {
+        return '<li><a href="' + href({ node: k }) + '"' + (found[k] ? ' class="is-found"' : "") + ">" + S.code(k) + "</a>" + (found[k] || open ? list(k) : "") + "</li>";
+      }).join("") + (hidden ? '<li class="idx-unknown" aria-label="' + hidden + ' not yet found">' + new Array(hidden + 1).join("· ") + "</li>" : "") + "</ul>";
     }
     var html = '<p class="label">Found <span id="found-count"></span></p>';
     html += '<ul><li><a href="' + href({ node: "chain" }) + '">' + S.code("chain") + "</a>" + list("chain") + "</li></ul>";
-    html += '<div class="idx-pieces"><h3 class="label">Pieces</h3><ul>' + CONN.map(function (c) {
+    html += '<div class="idx-pieces"><h3 class="label">Pieces</h3><ul>' + CONN.filter(function (c) { return open || found[c.node]; }).map(function (c) {
       var p = S.product(c.product);
       return p ? '<li><a href="' + href({ node: c.node, piece: p.id }) + '">' + p.code + " · " + S.code(c.node) + "</a></li>" : "";
     }).join("") + '<li><a href="shop.html">Shop</a></li></ul></div>';
@@ -564,12 +667,13 @@
   renderPieces();
   buildIndex();
   apply();
-  overviewCam(true);
+  updateOverviewButton();
+  startCam(true);
   var initial = readURL();
   if (initial.node) { dismissHint(); svg.classList.remove("is-intro"); }
   render(initial, { initial: !!initial.node });
   setTimeout(function () { svg.classList.remove("is-intro"); }, reduceMotion ? 0 : 3600);
   window.addEventListener("resize", function () {
-    if (current.node && current.node !== "chain") focusBox(boxFor(current.node, current.piece), true); else overviewCam(true);
+    if (current.node && current.node !== "chain") focusBox(boxFor(current.node, current.piece), true); else moveTo({ cx: cam.cx, cy: cam.cy, s: cam.s }, true);
   });
 })();
