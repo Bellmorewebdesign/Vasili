@@ -22,11 +22,9 @@
  */
 window.VASILI_MAP = {
   bounds: { x: 60, y: 50, w: 980, h: 780 },
-  /* Discovery: the drawing opens on this close view of the chain (never the
-     overview). The overview unlocks after `forms` forms across `families`
-     families have been found. */
+  /* The drawing opens on this close view of the chain; forms are revealed
+     layer by layer as they are opened (see js/map.js). */
   start: { x: 425, y: 255, w: 190, h: 290 },
-  unlock: { forms: 10, families: 3 },
   chain: {
     R: 21,
     links: [[520, 148], [545, 233], [500, 310], [462, 386], [506, 466], [525, 550], [550, 647]],
