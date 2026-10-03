@@ -1,5 +1,5 @@
 /*
- * DEMO CONNECTIONS — PROVISIONAL, NOT CONFIRMED BY THE CLIENT.
+ * DEMO CONNECTIONS, PROVISIONAL, NOT CONFIRMED BY THE CLIENT.
  *
  * The drawings show families of forms, but which finished piece comes from
  * which drawing has not been supplied. These links exist only so the

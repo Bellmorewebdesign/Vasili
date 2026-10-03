@@ -1,5 +1,5 @@
 /*
- * Origin map — transcribed from the client's main sheet.
+ * Origin map, transcribed from the client's main sheet.
  *
  * Coordinates are "sheet units": pixels of references/02-origin-map-overview.jpeg
  * after cropping to the paper (x from the photo's left edge, y minus 260).
@@ -13,7 +13,7 @@
  *                      G crosses → pendants · H barbed crescent tree
  *
  * What each form is CALLED, and which piece comes from which drawing, has not
- * been supplied — panels show placeholders. The chain-to-family "traces" shown
+ * been supplied, panels show placeholders. The chain-to-family "traces" shown
  * on selection are a navigation aid, not lines from the drawing.
  *
  *   line     the drawing's connecting line from the parent, in sheet units

@@ -94,7 +94,7 @@
       form.addEventListener("submit", function (e) {
         e.preventDefault();
         var note = form.querySelector(".note");
-        if (note) note.textContent = "Not connected in this sample — nothing was sent.";
+        if (note) note.textContent = "Not connected in this sample. Nothing was sent.";
       });
     });
   }

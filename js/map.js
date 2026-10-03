@@ -1,5 +1,5 @@
 /*
- * Origin map — an interactive redraw of the client's main sheet.
+ * Origin map, an interactive redraw of the client's main sheet.
  * Not linked from navigation: visitors arrive from a product description
  * ("See origin") or an FAQ answer.
  *
@@ -38,7 +38,7 @@
   /* ---------- discovery (per visitor) ----------
    * Layer by layer: at first only the chain and the forms attached to it are
    * drawn. Opening a form reveals the next layer of its branch. Selecting the
-   * chain (or Overview) zooms out to everything found so far — and only that.
+   * chain (or Overview) zooms out to everything found so far, and only that.
    * map.html?forget=1 clears a visitor's progress (handy for client demos). */
   var START = M.start || { x: 420, y: 250, w: 200, h: 300 };
   var found = {};
@@ -537,7 +537,7 @@
         var back = lastNode && svg.querySelector('[data-node="' + lastNode + '"]');
         if (opts.user && back) back.focus({ preventScroll: true });
       }
-      document.title = "Origin — Vasili";
+      document.title = "Origin | Vasili";
       if (opts.initial) startCam(true);
       return;
     }
@@ -547,7 +547,7 @@
     document.body.classList.add("has-panel");
     wirePanel(st);
     lastNode = st.node;
-    document.title = (st.piece ? S.product(st.piece).code : S.code(st.node)) + " — Origin — Vasili";
+    document.title = (st.piece ? S.product(st.piece).code : S.code(st.node)) + " | Origin | Vasili";
 
     var moved = !(prev.node === st.node && prev.piece === st.piece);
     if (st.node === "chain") { if (moved) overviewCam(opts.initial); }
