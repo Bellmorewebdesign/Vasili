@@ -12,7 +12,7 @@
   }
   function emptyPlate() {
     return '<div class="plate-wrap plate--empty" aria-hidden="true"><div class="plate"><div class="frame">[Product]</div>' +
-      '<div class="meta"><span class="code">—</span><span class="name">[Product name]</span></div></div></div>';
+      '<div class="meta"><span class="code">··</span><span class="name">[Product name]</span></div></div></div>';
   }
   function videoCell() {
     return '<div class="film-cell"><div class="media-slot" role="img" aria-label="Space for a future video"><small>Video placement</small><span>[Video]</span></div></div>';
@@ -65,7 +65,7 @@
       root.innerHTML = '<div class="missing"><p class="label">Not found</p><p><a class="btn" href="shop.html"><span class="arrow arrow--back"></span>Shop</a></p></div>';
       return;
     }
-    document.title = p.code + " — Vasili";
+    document.title = p.code + " | Vasili";
     var col = S.collections.filter(function (c) { return (p.collections || [])[0] === c.id; })[0];
     var origin = S.originHref(p.id);
     var html = '<nav class="crumbs" aria-label="Breadcrumb"><a href="shop.html">Shop</a><span aria-hidden="true">/</span>' +
@@ -107,7 +107,7 @@
     var id = Math.max(1, Math.min(3, parseInt(new URLSearchParams(location.search).get("id"), 10) || 1));
     var code = document.getElementById("post-code");
     if (code) code.textContent = "Post " + ("0" + id).slice(-2);
-    document.title = "Post " + ("0" + id).slice(-2) + " — Vasili";
+    document.title = "Post " + ("0" + id).slice(-2) + " | Vasili";
     var nav = document.getElementById("post-nav"), h = "";
     if (id > 1) h += '<a class="btn" href="blog-post.html?id=' + (id - 1) + '"><span class="arrow arrow--back"></span>[Post title]</a>';
     h += '<a class="btn" href="blog.html">News blog</a>';
@@ -124,7 +124,7 @@
       root.innerHTML = '<div class="missing"><p class="label">Not found</p><p><a class="btn" href="shop.html">Shop</a></p></div>';
       return;
     }
-    document.title = "Drawer " + S.code(fam) + " — Vasili";
+    document.title = "Drawer " + S.code(fam) + " | Vasili";
     var back = "map.html?node=" + encodeURIComponent(from);
     var members = S.nodes.filter(function (n) { var p = n; while (p && p.parent !== "chain") p = S.node(p.parent); return p && p.id === fam; });
     var pieces = members.reduce(function (acc, n) { return acc.concat(S.productsAt(n.id)); }, []);

@@ -58,7 +58,7 @@ def header(current):
         </div>
       </div>
     </nav>
-    <a class="logo" href="index.html"><img src="assets/brand/vasili-logo-white.svg" alt="Vasili — home" width="243" height="104"></a>
+    <a class="logo" href="index.html"><img src="assets/brand/vasili-logo-white.svg" alt="Vasili home" width="243" height="104"></a>
     <nav class="nav-side" aria-label="Secondary">
       <a class="hide-sm" href="about.html"{cur("about.html")}>About</a>
       <a class="hide-sm" href="news.html"{cur("news.html")}>News</a>
@@ -98,7 +98,7 @@ def footer(page):
         <input id="email-{page}" type="email" name="email" placeholder="[Email]" autocomplete="off">
         <button type="submit">Join</button>
       </div>
-      <p class="note">[Text] — layout only, not connected.</p>
+      <p class="note">[Text]. Layout only, not connected.</p>
     </form>
     <nav class="footer-cols" aria-label="Footer">
       <div><h2 class="label">Shop</h2><ul>{links(COLLECTIONS, "")}</ul></div>
@@ -199,7 +199,7 @@ built.append(page("index.html", "Vasili", '''  <main id="main">
     </section>
 
     <section class="ad-band" aria-label="Advertisement placement">
-      <div class="ad-slot"><small>Ad placement — empty</small><span>[Ad]</span></div>
+      <div class="ad-slot"><small>Ad placement (empty)</small><span>[Ad]</span></div>
     </section>
 
     <section class="triptych" aria-label="Worn">
@@ -214,7 +214,7 @@ built.append(page("index.html", "Vasili", '''  <main id="main">
 for href, label in COLLECTIONS:
     cid = {"shop.html": "all", "collection.html": "frontpage"}.get(href, href[len("collection-"):-len(".html")])
     chips = links(COLLECTIONS, href)
-    built.append(page(href, f"{label} — Vasili", f'''  <main id="main">
+    built.append(page(href, f"{label} | Vasili", f'''  <main id="main">
     <div class="page-head">
       <div>
         <span class="label">{label}</span>
@@ -229,12 +229,12 @@ for href, label in COLLECTIONS:
   </main>''', "collection"))
 
 # ---------------------------------------------------------------- product (template)
-built.append(page("product.html", "Piece — Vasili", '''  <main id="main">
+built.append(page("product.html", "Piece | Vasili", '''  <main id="main">
     <div id="product-root"><noscript><p class="missing"><a href="shop.html">Shop</a></p></noscript></div>
   </main>''', "product"))
 
 # ---------------------------------------------------------------- studio pages
-built.append(page("about.html", "About — Vasili", f'''  <main id="main" class="doc">
+built.append(page("about.html", "About | Vasili", f'''  <main id="main" class="doc">
     <div class="split">
       <figure class="split-photo"><img src="assets/web/VASILI129-960.jpg" srcset="assets/web/VASILI129-480.jpg 480w, assets/web/VASILI129-960.jpg 960w, assets/web/VASILI129-1600.jpg 1600w" sizes="(max-width: 900px) 100vw, 45vw" alt="Gold link rings worn on a hand held against black lace"></figure>
       <div class="split-copy">
@@ -248,7 +248,7 @@ built.append(page("about.html", "About — Vasili", f'''  <main id="main" class=
     <section class="wrap band-media">{media()}</section>
   </main>''', "about"))
 
-built.append(page("preface.html", "Preface — Vasili", f'''  <main id="main" class="doc doc--narrow">
+built.append(page("preface.html", "Preface | Vasili", f'''  <main id="main" class="doc doc--narrow">
     <span class="label">Preface</span>
     <h1 class="ph-h">[Heading]</h1>
     <div class="divider" id="chain-divider" aria-hidden="true"></div>
@@ -256,7 +256,7 @@ built.append(page("preface.html", "Preface — Vasili", f'''  <main id="main" cl
     {media()}
   </main>''', "preface"))
 
-built.append(page("collaborations.html", "Collaborations — Vasili", f'''  <main id="main" class="doc">
+built.append(page("collaborations.html", "Collaborations | Vasili", f'''  <main id="main" class="doc">
     <div class="page-head page-head--flush"><div><span class="label">Collaborations</span><h1 class="ph-h">[Heading]</h1><p class="ph-t">[Text]</p></div></div>
     <ul class="collab-grid">
       {"".join(f'<li><div class="frame-empty">[Image]</div><span class="code">{i:02d}</span><h2 class="name">[Collaborator]</h2><p class="ph-t">[Text]</p></li>' for i in range(1, 5))}
@@ -264,7 +264,7 @@ built.append(page("collaborations.html", "Collaborations — Vasili", f'''  <mai
     {media()}
   </main>''', "collaborations"))
 
-built.append(page("custom-inquiries.html", "Custom Inquiries — Vasili", '''  <main id="main" class="doc">
+built.append(page("custom-inquiries.html", "Custom Inquiries | Vasili", '''  <main id="main" class="doc">
     <div class="split split--form">
       <div class="split-copy">
         <span class="label">Custom Inquiries</span>
@@ -279,7 +279,7 @@ built.append(page("custom-inquiries.html", "Custom Inquiries — Vasili", '''  <
         <label>Details<textarea name="details" rows="6" placeholder="[Details]"></textarea></label>
         <label>Reference image<input type="file" name="file" disabled></label>
         <button class="btn btn--solid" type="submit">Send</button>
-        <p class="note">Layout only — this form is not connected.</p>
+        <p class="note">Layout only. This form is not connected.</p>
       </form>
     </div>
   </main>''', "custom-inquiries"))
@@ -292,11 +292,11 @@ for g, (group, qs) in enumerate([("Pieces", 3), ("Orders", 3), ("Care", 2)]):
         answer = '<p class="ph-t">[Answer]</p>'
         if g == 0 and i == 1:
             # The one contextual way in from the regular site (besides product descriptions).
-            answer = ('<p class="ph-t">[Answer — about the drawings behind the pieces] '
+            answer = ('<p class="ph-t">[Answer about the drawings behind the pieces] '
                       '<a class="inline-link" href="map.html">See origin</a></p>')
         rows.append(f'<details class="faq-item"><summary><span class="ph-q">[Question]</span></summary>{answer}</details>')
     faq_items.append(f'<section class="faq-group"><h2 class="label">{group}</h2>{"".join(rows)}</section>')
-built.append(page("faq.html", "FAQ — Vasili", f'''  <main id="main" class="doc doc--narrow">
+built.append(page("faq.html", "FAQ | Vasili", f'''  <main id="main" class="doc doc--narrow">
     <span class="label">FAQ</span>
     <h1 class="ph-h">[Heading]</h1>
     {"".join(faq_items)}
@@ -306,7 +306,7 @@ built.append(page("faq.html", "FAQ — Vasili", f'''  <main id="main" class="doc
 
 def policy(filename, label):
     secs = "".join(f'<section><h2 class="ph-h ph-h--sm">[Section]</h2>{text_block(2)}</section>' for _ in range(4))
-    return page(filename, f"{label} — Vasili", f'''  <main id="main" class="doc doc--narrow policy">
+    return page(filename, f"{label} | Vasili", f'''  <main id="main" class="doc doc--narrow policy">
     <span class="label">{label}</span>
     <h1 class="ph-h">[Heading]</h1>
     <p class="code">Last updated [Date]</p>
@@ -318,7 +318,7 @@ built.append(policy("shipping-policy.html", "Shipping Policy"))
 built.append(policy("return-policy.html", "Return Policy"))
 
 # ---------------------------------------------------------------- news + blog
-built.append(page("news.html", "News — Vasili", f'''  <main id="main" class="doc">
+built.append(page("news.html", "News | Vasili", f'''  <main id="main" class="doc">
     <div class="page-head page-head--flush"><div><span class="label">News</span><h1 class="ph-h">[Heading]</h1><p class="ph-t">[Text]</p></div>
       <a class="btn" href="blog.html">News blog<span class="arrow"></span></a></div>
     <ol class="news-list">
@@ -327,7 +327,7 @@ built.append(page("news.html", "News — Vasili", f'''  <main id="main" class="d
     {media("[Video]")}
   </main>''', "news"))
 
-built.append(page("blog.html", "News blog — Vasili", f'''  <main id="main" class="doc">
+built.append(page("blog.html", "News blog | Vasili", f'''  <main id="main" class="doc">
     <div class="page-head page-head--flush"><div><span class="label">News blog</span><h1 class="ph-h">[Heading]</h1></div>
       <a class="btn" href="news.html"><span class="arrow arrow--back"></span>News</a></div>
     <ul class="post-grid">
@@ -335,7 +335,7 @@ built.append(page("blog.html", "News blog — Vasili", f'''  <main id="main" cla
     </ul>
   </main>''', "blog"))
 
-built.append(page("blog-post.html", "Post — Vasili", f'''  <main id="main" class="doc doc--narrow article">
+built.append(page("blog-post.html", "Post | Vasili", f'''  <main id="main" class="doc doc--narrow article">
     <nav class="crumbs crumbs--flush" aria-label="Breadcrumb"><a href="blog.html">News blog</a><span aria-hidden="true">/</span><span aria-current="page" id="post-code">Post</span></nav>
     <span class="code">[Date]</span>
     <h1 class="ph-h">[Post title]</h1>
@@ -346,7 +346,7 @@ built.append(page("blog-post.html", "Post — Vasili", f'''  <main id="main" cla
   </main>''', "post"))
 
 # ---------------------------------------------------------------- hidden: map + drawer
-built.append(page("map.html", "Origin — Vasili", '''  <main id="main" class="map-page">
+built.append(page("map.html", "Origin | Vasili", '''  <main id="main" class="map-page">
     <div class="map-stage" id="stage" tabindex="0"
          aria-label="Drawing canvas. Drag, or use the arrow keys, to move. Plus and minus keys zoom. Tab to reach each form.">
       <svg id="map" class="lw is-intro" xmlns="http://www.w3.org/2000/svg" aria-labelledby="map-title">
@@ -392,7 +392,7 @@ built.append(page("map.html", "Origin — Vasili", '''  <main id="main" class="m
   </main>''', "map", css=("css/site.css", "css/map.css"), with_footer=False, body_class="is-map",
     scripts=("js/map.js",), noindex=True))
 
-built.append(page("drawer.html", "Drawer — Vasili", '''  <main id="main" class="drawer-page">
+built.append(page("drawer.html", "Drawer | Vasili", '''  <main id="main" class="drawer-page">
     <div id="drawer-root"><noscript><p class="missing"><a href="shop.html">Shop</a></p></noscript></div>
   </main>''', "drawer", noindex=True))
 
